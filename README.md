@@ -21,10 +21,10 @@ Two other conflicts are accepted because their approvals are current and their c
 
 ## What this control tests
 
-| Rule ID | Control assertion | Severity |
+| Control ID | Control description | Severity |
 |---|---|---|
 | SOD-01 | The applied rule set matches the current approved SoD matrix. | High |
-| SOD-02 | No active user holds an unmitigated incompatible access combination. | Critical, or the matrix rule severity |
+| SOD-02 | No active user holds an unmitigated incompatible access combination. | Critical |
 | SOD-03 | Cross application conflicts are included where the business process spans systems. | High |
 | SOD-04 | Accepted conflicts have a current owner, approval, compensating control, and periodic reassessment. | High |
 
@@ -90,6 +90,7 @@ A demonstration of that package is checked into [`sample_output/`](sample_output
 
 - `ci.yml` runs the test suite and a sample review for every change.
 - `sod-monitor.yml` runs each weekday and on demand, retains the evidence package, and opens or updates one GitHub Issue per finding.
+- `exception-escalation.yml` runs daily and labels overdue open cases `sla-breached`, with an escalation comment to the control owner.
 - Each exception case has a five day response SLA. Critical conflicts that can create and approve or release a financial transaction require immediate escalation to Financial Systems Controls.
 - When a finding disappears from a later run, the workflow adds `human-closure-review`. It does not close the Issue automatically because remediation, lookback, root cause, and closure evidence still require human review.
 
@@ -118,7 +119,7 @@ The proof of concept demonstrates detection and evidence packaging. It does not 
 | Framework alignment | SOX ITGC logical access and segregation of duties; NIST SP 800-53 AC-5; COBIT 2019 DSS05.04. |
 | Evidence contract | Source provenance, population reconciliation, matrix and coverage evaluations, individual findings, exception cases, response evidence, and human approved closure. |
 
-Detailed mapping and evidence requirements are in [Control narrative](docs/control_narrative.md) and [Evidence contract](docs/evidence_contract.md). Response ownership is defined in the [Human response runbook](docs/human_response_runbook.md).
+Detailed mapping and evidence requirements are in [RCM and control narrative](docs/rcm_and_control_narrative.md) and [Evidence contract](docs/evidence_contract.md). Response ownership is defined in the [Human response runbook](docs/human_response_runbook.md).
 
 ## Repository layout
 
@@ -131,6 +132,7 @@ data/source_manifest.json   Source provenance, counts, and fingerprints
 src/                        Integrity checks, detection, models, and reporting
 tests/                      Rule, fail closed, reconciliation, and output tests
 docs/                       Narrative, evidence contract, response, production design
+.github/workflows/           CI, scheduled monitoring, and SLA escalation
 sample_output/              RCM ready evidence and individual cases
 ```
 

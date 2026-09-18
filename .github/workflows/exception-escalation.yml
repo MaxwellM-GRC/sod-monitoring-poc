@@ -1,0 +1,57 @@
+name: Exception Escalation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "43 14 * * *"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  escalate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Escalate cases beyond the response SLA
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const slaDays = 5;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const labelName = "sla-breached";
+            try {
+              await github.rest.issues.getLabel({ owner, repo, name: labelName });
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.issues.createLabel({
+                owner,
+                repo,
+                name: labelName,
+                color: "B60205",
+                description: "Response SLA exceeded; control owner escalation required",
+              });
+            }
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner,
+              repo,
+              state: "open",
+              labels: "sod-exception",
+              per_page: 100,
+            });
+            const now = Date.now();
+            for (const issue of issues) {
+              const labels = issue.labels.map(item => typeof item === "string" ? item : item.name);
+              if (labels.includes("human-closure-review")) continue;
+              const ageDays = (now - Date.parse(issue.created_at)) / 86400000;
+              if (ageDays <= slaDays || labels.includes(labelName)) continue;
+              await github.rest.issues.addLabels({ owner, repo, issue_number: issue.number, labels: [labelName] });
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issue.number,
+                body: "Response SLA exceeded. Financial Systems Controls must review ownership, remediation, lookback, root cause, and escalation requirements.",
+              });
+            }
+

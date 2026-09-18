@@ -32,6 +32,7 @@ def ensure_labels(repo: str) -> None:
         "severity:high": ("High control exception", "D93F0B"),
         "human-action-required": ("A human decision is required", "FBCA04"),
         "human-closure-review": ("Finding disappeared; verify evidence before closure", "0E8A16"),
+        "sla-breached": ("Response SLA exceeded; control owner escalation required", "B60205"),
     }
     current = {row["name"] for row in request("GET", f"/repos/{repo}/labels?per_page=100")}  # type: ignore[union-attr]
     for name, (description, color) in wanted.items():

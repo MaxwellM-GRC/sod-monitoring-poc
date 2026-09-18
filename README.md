@@ -45,7 +45,7 @@ Each source is checked against `data/source_manifest.json` for source provenance
 
 The evaluator then reconciles every entitlement to an application account and common identity, confirms that the matrix is approved and current, verifies that business process risks have matrix coverage, and evaluates the full active population. A retained conflict is accepted only when its owner, approval, expiry, reassessment date, compensating control, evidence, and independent review are current.
 
-Automation detects, prioritizes, and routes an exception case. A human approved decision is required to remove access, redesign a role, approve time bound mitigation, complete the lookback, document root cause, and close the case. The tool cannot change access, accept risk, attest that a control operated, or approve its own follow up.
+Automation detects, prioritizes, and routes an exception case. Authorized people approve remediation, risk acceptance, and closure. They also decide whether to remove access, redesign a role, approve time bound mitigation, complete the lookback, and accept the documented root cause. The tool cannot change access, accept risk, attest that a control operated, or approve its own follow up.
 
 ## Quick start
 

@@ -14,7 +14,7 @@ Maintain the SoD matrix as a versioned, approved configuration with protected ch
 
 ## Safety boundary
 
-Production automation may collect, detect, prioritize, and route. It should not remove access, redesign roles, approve an exception, attest control performance, or close a case without an authorized human decision. Separate monitoring credentials from access administration credentials and make response actions reversible where feasible.
+Production automation may collect, detect, prioritize, and route. Authorized people approve remediation, risk acceptance, and closure. Automation should not remove access, redesign roles, approve an exception, attest control performance, accept risk, or close a case. Separate monitoring credentials from access administration credentials and make response actions reversible where feasible.
 
 ## Deployment gates
 

@@ -41,7 +41,7 @@ Compensating control tests ──┘                                  │
                                              evidence JSON + RCM CSV + cases
 ```
 
-Each source is checked against `data/source_manifest.json` for source provenance, expected schema, row count, SHA-256 fingerprint, extraction timestamp, query description, and review window. Missing, changed, duplicated, or unreconciled source records stop the review with exit code `3` rather than producing a misleading clean result.
+Each source is checked against `data/source_manifest.json` for evidence source details, expected fields, row count, evidence integrity, extraction timestamp, query description, and review window. Missing, changed, duplicated, or unreconciled source records stop the review with exit code `3` rather than producing a misleading clean result.
 
 The evaluator then reconciles every entitlement to an application account and common identity, confirms that the matrix is approved and current, verifies that business process risks have matrix coverage, and evaluates the full active population. A retained conflict is accepted only when its owner, approval, expiry, reassessment date, compensating control, evidence, and independent review are current.
 
@@ -79,8 +79,8 @@ The generated evidence package contains:
 
 ```text
 output/
-  control_evidence.json   Source provenance, population reconciliation, evaluations, findings
-  exceptions.csv          RCM ready exception register with blank human decision fields
+  control_evidence.json   Evidence source details, complete population check, evaluations, findings
+  exceptions.csv          Exception register ready for review with blank human decision fields
   cases/SOD-*.md          One response case per individual finding
 ```
 
@@ -100,7 +100,7 @@ The scheduled monitor uses `--fail-on-findings` after it has preserved evidence 
 
 This repository uses sanitized static CSV files. A production implementation would use collectors with read only, least privilege access to the identity, ERP, treasury, expense, billing, and GRC services. Collector output would be stored immutably before normalization and reconciled to each authoritative system inventory.
 
-Production readiness also requires validated identity correlation, explicit treatment of service and generic accounts, approved matrix change governance, encrypted evidence storage, workload identity, monitored collector failures, retention controls, and user acceptance testing for every rule. See [Production design](docs/production_design.md) for the deployment boundary and readiness gates.
+Production readiness also requires validated identity correlation, explicit treatment of service and generic accounts, approved matrix change governance, encrypted evidence storage, dedicated system identities with limited access, monitored collection failures, retention controls, and user acceptance testing for every rule. See [Production design](docs/production_design.md) for the deployment boundary and readiness gates.
 
 The proof of concept demonstrates detection and evidence packaging. It does not establish that a production population is complete, make access changes, approve exceptions, perform transaction lookbacks, or approve case closure. Those activities remain human decisions owned by authorized control and business process personnel.
 
@@ -117,7 +117,7 @@ The proof of concept demonstrates detection and evidence packaging. It does not 
 | Population | All active human, privileged, generic, and applicable service accounts with roles and permissions across in scope systems. |
 | Frequency | Weekly detective monitoring; formal management review at least quarterly. |
 | Framework alignment | SOX ITGC logical access and segregation of duties; NIST SP 800-53 AC-5; COBIT 2019 DSS05.04. |
-| Evidence contract | Source provenance, population reconciliation, matrix and coverage evaluations, individual findings, exception cases, response evidence, and human approved closure. |
+| Evidence contract | Evidence source details, complete population check, matrix and coverage evaluations, individual findings, exception cases, response evidence, and human approved closure. |
 
 Detailed mapping and evidence requirements are in [RCM and control narrative](docs/rcm_and_control_narrative.md) and [Evidence contract](docs/evidence_contract.md). Response ownership is defined in the [Human response runbook](docs/human_response_runbook.md).
 
@@ -128,12 +128,17 @@ config.yaml                 Control, sources, matrix rules, and response guidanc
 data/*/accounts.csv         Complete fictional application account populations
 data/*/entitlements.csv     Complete fictional entitlement populations
 data/governance/            Approved matrix, process risks, exceptions, control tests
-data/source_manifest.json   Source provenance, counts, and fingerprints
+data/source_manifest.json   Evidence source details, counts, and integrity checks
 src/                        Integrity checks, detection, models, and reporting
 tests/                      Rule, fail closed, reconciliation, and output tests
 docs/                       Narrative, evidence contract, response, production design
 .github/workflows/           CI, scheduled monitoring, and SLA escalation
-sample_output/              RCM ready evidence and individual cases
+sample_output/              Evidence ready for review and individual cases
 ```
+
+## Shared terminology
+
+Plain language definitions for shared assurance terms are available in the
+[portfolio glossary](https://github.com/MaxwellM-GRC/grc-control-core/blob/v0.1.1/docs/glossary.md).
 
 MIT — see [LICENSE](LICENSE).

@@ -1,0 +1,5 @@
+test_id,exception_id,compensating_control_id,period_end,tested_at,performer,reviewer,result,evidence_ref
+CCT-200-09,EXC-200,CC-JE-200,2026-09-07,2026-09-08,Accounting Supervisor,Assistant Controller,pass,GRC-CC-200-2026-W36
+CCT-300-08,EXC-300,CC-EXP-300,2026-08-24,2026-08-25,Expense Analyst,Expense Operations Manager,pass,GRC-CC-300-2026-W34
+CCT-400-09,EXC-400,CC-AP-400,2026-09-07,2026-09-09,AP Supervisor,Assistant Controller,failed,GRC-CC-400-2026-W36
+CCT-700-09,EXC-700,CC-AR-700,2026-09-07,2026-09-08,Billing Supervisor,Assistant Controller,pass,GRC-CC-700-2026-W36

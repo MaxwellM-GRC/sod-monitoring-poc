@@ -1,0 +1,5 @@
+exception_id,conflict_rule_id,user_id,status,owner,approved_by,approved_at,expires_at,compensating_control_id,reassessment_due_at,rationale
+EXC-200,SOD-R002,u200,approved,Corporate Accounting Manager,Controller,2026-01-08,2026-12-31,CC-JE-200,2026-10-01,Limited staffing with daily independent journal report review
+EXC-300,SOD-R003,u300,approved,Expense Operations Manager,Controller,2025-09-01,2026-08-31,CC-EXP-300,2026-08-31,Temporary regional approver coverage
+EXC-400,SOD-R001,u400,approved,Accounts Payable Manager,Controller,2026-04-20,2026-12-31,CC-AP-400,2026-10-15,Weekly independent vendor payment match review
+EXC-700,SOD-R005,u700,approved,Billing Operations Manager,Controller,2026-01-14,2026-12-31,CC-AR-700,2026-10-15,Weekly independent credit memo review

@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0",
+  "sources": [
+    {
+      "source_id": "coranto_erp_accounts",
+      "source_uri": "fictional://coranto_erp/accounts",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM accounts FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 7,
+      "sha256": "13b82d9ac96cc45a3beaf05f1ab40e8e02426f03f5a2b6ae0d340611396a8424"
+    },
+    {
+      "source_id": "coranto_erp_entitlements",
+      "source_uri": "fictional://coranto_erp/entitlements",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM entitlements FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 8,
+      "sha256": "8367bcf7c8638787d806803bed31eb1d7d2f33c7083097f73d079c8b6377ec58"
+    },
+    {
+      "source_id": "atlas_treasury_accounts",
+      "source_uri": "fictional://atlas_treasury/accounts",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM accounts FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 5,
+      "sha256": "5cfc4916fdc1c552392b977207d96d432ce79fd5e9e75838988d66e5b524d116"
+    },
+    {
+      "source_id": "atlas_treasury_entitlements",
+      "source_uri": "fictional://atlas_treasury/entitlements",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM entitlements FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 5,
+      "sha256": "9b484f35c1f9ccc290677285a8ff0bf3f4784da4b94f0c7b84c4d35bbb773b03"
+    },
+    {
+      "source_id": "nimbus_expense_accounts",
+      "source_uri": "fictional://nimbus_expense/accounts",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM accounts FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 2,
+      "sha256": "503b6b655aef0ccc52ff7ea991aeb823d8644d1555e0f9fa3da7f302cd28d003"
+    },
+    {
+      "source_id": "nimbus_expense_entitlements",
+      "source_uri": "fictional://nimbus_expense/entitlements",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM entitlements FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 3,
+      "sha256": "dc32a9233c35fd2f434b6659d536dc0e5d4a72c274c8b34673a74c5ca0d49d1d"
+    },
+    {
+      "source_id": "quill_billing_accounts",
+      "source_uri": "fictional://quill_billing/accounts",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM accounts FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 2,
+      "sha256": "6db5b282ba37549dc2dc85cd394b01d36b22ea052e07ef1f7c0417ad30321b98"
+    },
+    {
+      "source_id": "quill_billing_entitlements",
+      "source_uri": "fictional://quill_billing/entitlements",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM entitlements FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 2,
+      "sha256": "cb0739d2f044448700f4a42a863712ff1fc24845c932bd5b1df3a9b593c6ffef"
+    },
+    {
+      "source_id": "sod_matrix",
+      "source_uri": "fictional://governance/sod_matrix",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM sod_matrix FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 5,
+      "sha256": "76ef08f4877ba599b0d29a81053fa56b601f608388ca4f0018f74b3914f53d88"
+    },
+    {
+      "source_id": "business_process_risks",
+      "source_uri": "fictional://governance/business_process_risks",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM business_process_risks FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 5,
+      "sha256": "0c0081475ff1ed1a563e9360cd8f07d27e6e0719e4b09faf575173c9adb22392"
+    },
+    {
+      "source_id": "approved_exceptions",
+      "source_uri": "fictional://governance/exceptions",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM exceptions FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 4,
+      "sha256": "60e55572979d0f837e3164b22b8ef669ad506fe062a05722136175e61388560b"
+    },
+    {
+      "source_id": "compensating_control_tests",
+      "source_uri": "fictional://governance/control_tests",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM control_tests FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "row_count": 4,
+      "sha256": "8afd5c83130f33ec405e276b7aaacc87ef7d6daf46de5a6523e460d42a970c48"
+    }
+  ]
+}

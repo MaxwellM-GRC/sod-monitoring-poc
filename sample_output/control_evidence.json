@@ -1,0 +1,810 @@
+{
+  "schema_version": "1.0",
+  "run_id": "RUN-3cb95278b2b81920",
+  "generated_at": "2026-09-18T03:56:01+00:00",
+  "control": {
+    "id": "ITGC-SOD-001",
+    "name": "Segregation of Duties Monitoring",
+    "source_checklist": "SOX_Segregation_of_Duties_Checklist.docx",
+    "risk_category": "logical_access",
+    "risk": "Failure to identify and resolve incompatible access combinations could allow a user to initiate and conceal an error or fraud without independent review, resulting in unauthorized or inaccurate financial transactions.",
+    "control_description": "Management performs periodic analysis of complete active user entitlement populations against the approved segregation of duties matrix and remediates or formally mitigates identified conflicts.",
+    "objective": "Incompatible duties within and across in scope systems are identified, prevented, remediated, or mitigated through approved compensating controls.",
+    "activity": "Evaluate complete active user entitlement populations against the approved, versioned SoD rule matrix, including cross application combinations.",
+    "frequency": "Weekly detective monitoring; formal management review at least quarterly",
+    "population": "All active human, privileged, generic, and applicable service accounts with roles and permissions across in scope systems.",
+    "owner": "Financial Systems Controls"
+  },
+  "review": {
+    "as_of": "2026-09-15",
+    "window_start": "2026-09-01T00:00:00Z",
+    "window_end": "2026-09-15T23:59:59Z",
+    "approved_matrix_version": "2026.1",
+    "compensating_control_test_max_age_days": 92
+  },
+  "rules": {
+    "SOD-01": {
+      "severity": "high",
+      "assertion": "The applied rule set matches the current approved SoD matrix."
+    },
+    "SOD-02": {
+      "severity": "critical",
+      "assertion": "No active user holds an unmitigated incompatible access combination."
+    },
+    "SOD-03": {
+      "severity": "high",
+      "assertion": "Cross application conflicts are included where the business process spans systems."
+    },
+    "SOD-04": {
+      "severity": "high",
+      "assertion": "Accepted conflicts have a current owner, approval, compensating control, and periodic reassessment."
+    }
+  },
+  "response_governance": {
+    "mode": "human_approval_required",
+    "response_sla_days": 5,
+    "escalation_owner": "Financial Systems Controls",
+    "prohibited_actions": [
+      "automatic_access_removal",
+      "automatic_risk_acceptance",
+      "automatic_exception_closure"
+    ]
+  },
+  "input_valid": true,
+  "population_reconciled": true,
+  "population": {
+    "accounts_all_statuses": 16,
+    "active_accounts": 14,
+    "entitlements_all_statuses": 18,
+    "active_account_entitlements": 16,
+    "active_identities": 9,
+    "approved_effective_matrix_rules": 5,
+    "cross_application_matrix_rules": 2,
+    "conflicts_detected": 6,
+    "conflict_results": {
+      "accepted_with_effective_control": 2,
+      "unmitigated_conflict": 4
+    }
+  },
+  "source_provenance": [
+    {
+      "source_id": "coranto_erp_accounts",
+      "kind": "accounts",
+      "application": "coranto_erp",
+      "path": "data/coranto_erp/accounts.csv",
+      "source_uri": "fictional://coranto_erp/accounts",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM accounts FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 7,
+      "actual_rows": 7,
+      "expected_sha256": "13b82d9ac96cc45a3beaf05f1ab40e8e02426f03f5a2b6ae0d340611396a8424",
+      "actual_sha256": "13b82d9ac96cc45a3beaf05f1ab40e8e02426f03f5a2b6ae0d340611396a8424",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "coranto_erp_entitlements",
+      "kind": "entitlements",
+      "application": "coranto_erp",
+      "path": "data/coranto_erp/entitlements.csv",
+      "source_uri": "fictional://coranto_erp/entitlements",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM entitlements FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 8,
+      "actual_rows": 8,
+      "expected_sha256": "8367bcf7c8638787d806803bed31eb1d7d2f33c7083097f73d079c8b6377ec58",
+      "actual_sha256": "8367bcf7c8638787d806803bed31eb1d7d2f33c7083097f73d079c8b6377ec58",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "atlas_treasury_accounts",
+      "kind": "accounts",
+      "application": "atlas_treasury",
+      "path": "data/atlas_treasury/accounts.csv",
+      "source_uri": "fictional://atlas_treasury/accounts",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM accounts FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 5,
+      "actual_rows": 5,
+      "expected_sha256": "5cfc4916fdc1c552392b977207d96d432ce79fd5e9e75838988d66e5b524d116",
+      "actual_sha256": "5cfc4916fdc1c552392b977207d96d432ce79fd5e9e75838988d66e5b524d116",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "atlas_treasury_entitlements",
+      "kind": "entitlements",
+      "application": "atlas_treasury",
+      "path": "data/atlas_treasury/entitlements.csv",
+      "source_uri": "fictional://atlas_treasury/entitlements",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM entitlements FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 5,
+      "actual_rows": 5,
+      "expected_sha256": "9b484f35c1f9ccc290677285a8ff0bf3f4784da4b94f0c7b84c4d35bbb773b03",
+      "actual_sha256": "9b484f35c1f9ccc290677285a8ff0bf3f4784da4b94f0c7b84c4d35bbb773b03",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "nimbus_expense_accounts",
+      "kind": "accounts",
+      "application": "nimbus_expense",
+      "path": "data/nimbus_expense/accounts.csv",
+      "source_uri": "fictional://nimbus_expense/accounts",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM accounts FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 2,
+      "actual_rows": 2,
+      "expected_sha256": "503b6b655aef0ccc52ff7ea991aeb823d8644d1555e0f9fa3da7f302cd28d003",
+      "actual_sha256": "503b6b655aef0ccc52ff7ea991aeb823d8644d1555e0f9fa3da7f302cd28d003",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "nimbus_expense_entitlements",
+      "kind": "entitlements",
+      "application": "nimbus_expense",
+      "path": "data/nimbus_expense/entitlements.csv",
+      "source_uri": "fictional://nimbus_expense/entitlements",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM entitlements FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 3,
+      "actual_rows": 3,
+      "expected_sha256": "dc32a9233c35fd2f434b6659d536dc0e5d4a72c274c8b34673a74c5ca0d49d1d",
+      "actual_sha256": "dc32a9233c35fd2f434b6659d536dc0e5d4a72c274c8b34673a74c5ca0d49d1d",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "quill_billing_accounts",
+      "kind": "accounts",
+      "application": "quill_billing",
+      "path": "data/quill_billing/accounts.csv",
+      "source_uri": "fictional://quill_billing/accounts",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM accounts FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 2,
+      "actual_rows": 2,
+      "expected_sha256": "6db5b282ba37549dc2dc85cd394b01d36b22ea052e07ef1f7c0417ad30321b98",
+      "actual_sha256": "6db5b282ba37549dc2dc85cd394b01d36b22ea052e07ef1f7c0417ad30321b98",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "quill_billing_entitlements",
+      "kind": "entitlements",
+      "application": "quill_billing",
+      "path": "data/quill_billing/entitlements.csv",
+      "source_uri": "fictional://quill_billing/entitlements",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM entitlements FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 2,
+      "actual_rows": 2,
+      "expected_sha256": "cb0739d2f044448700f4a42a863712ff1fc24845c932bd5b1df3a9b593c6ffef",
+      "actual_sha256": "cb0739d2f044448700f4a42a863712ff1fc24845c932bd5b1df3a9b593c6ffef",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "sod_matrix",
+      "kind": "sod_matrix",
+      "application": "governance",
+      "path": "data/governance/sod_matrix.csv",
+      "source_uri": "fictional://governance/sod_matrix",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM sod_matrix FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 5,
+      "actual_rows": 5,
+      "expected_sha256": "76ef08f4877ba599b0d29a81053fa56b601f608388ca4f0018f74b3914f53d88",
+      "actual_sha256": "76ef08f4877ba599b0d29a81053fa56b601f608388ca4f0018f74b3914f53d88",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "business_process_risks",
+      "kind": "business_process_risks",
+      "application": "governance",
+      "path": "data/governance/business_process_risks.csv",
+      "source_uri": "fictional://governance/business_process_risks",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM business_process_risks FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 5,
+      "actual_rows": 5,
+      "expected_sha256": "0c0081475ff1ed1a563e9360cd8f07d27e6e0719e4b09faf575173c9adb22392",
+      "actual_sha256": "0c0081475ff1ed1a563e9360cd8f07d27e6e0719e4b09faf575173c9adb22392",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "approved_exceptions",
+      "kind": "exceptions",
+      "application": "governance",
+      "path": "data/governance/approved_exceptions.csv",
+      "source_uri": "fictional://governance/exceptions",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM exceptions FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 4,
+      "actual_rows": 4,
+      "expected_sha256": "60e55572979d0f837e3164b22b8ef669ad506fe062a05722136175e61388560b",
+      "actual_sha256": "60e55572979d0f837e3164b22b8ef669ad506fe062a05722136175e61388560b",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    },
+    {
+      "source_id": "compensating_control_tests",
+      "kind": "control_tests",
+      "application": "governance",
+      "path": "data/governance/compensating_control_tests.csv",
+      "source_uri": "fictional://governance/control_tests",
+      "extraction_method": "Sanitized static export for portfolio demonstration",
+      "query": "SELECT required control fields FROM control_tests FOR COMPLETE REVIEW WINDOW",
+      "extracted_at": "2026-09-16T08:00:00Z",
+      "window_start": "2026-09-01T00:00:00Z",
+      "window_end": "2026-09-15T23:59:59Z",
+      "expected_rows": 4,
+      "actual_rows": 4,
+      "expected_sha256": "8afd5c83130f33ec405e276b7aaacc87ef7d6daf46de5a6523e460d42a970c48",
+      "actual_sha256": "8afd5c83130f33ec405e276b7aaacc87ef7d6daf46de5a6523e460d42a970c48",
+      "missing_columns": [],
+      "duplicate_keys": [],
+      "errors": [],
+      "ok": true
+    }
+  ],
+  "population_errors": [],
+  "matrix_evaluations": [
+    {
+      "conflict_rule_id": "SOD-R001",
+      "matrix_version": "2026.1",
+      "approved": true,
+      "effective": true,
+      "result": "pass",
+      "reasons": []
+    },
+    {
+      "conflict_rule_id": "SOD-R002",
+      "matrix_version": "2026.1",
+      "approved": true,
+      "effective": true,
+      "result": "pass",
+      "reasons": []
+    },
+    {
+      "conflict_rule_id": "SOD-R003",
+      "matrix_version": "2026.1",
+      "approved": true,
+      "effective": true,
+      "result": "pass",
+      "reasons": []
+    },
+    {
+      "conflict_rule_id": "SOD-R004",
+      "matrix_version": "2026.1",
+      "approved": true,
+      "effective": true,
+      "result": "pass",
+      "reasons": []
+    },
+    {
+      "conflict_rule_id": "SOD-R005",
+      "matrix_version": "2026.1",
+      "approved": true,
+      "effective": true,
+      "result": "pass",
+      "reasons": []
+    }
+  ],
+  "coverage_evaluations": [
+    {
+      "process_risk_id": "BP-AP-01",
+      "business_process": "Procure to Pay",
+      "cross_application": true,
+      "covered_by_conflict_rule": "SOD-R001",
+      "result": "pass"
+    },
+    {
+      "process_risk_id": "BP-GL-01",
+      "business_process": "Record to Report",
+      "cross_application": false,
+      "covered_by_conflict_rule": "SOD-R002",
+      "result": "pass"
+    },
+    {
+      "process_risk_id": "BP-EXP-01",
+      "business_process": "Travel and Expense",
+      "cross_application": false,
+      "covered_by_conflict_rule": "SOD-R003",
+      "result": "pass"
+    },
+    {
+      "process_risk_id": "BP-TRE-01",
+      "business_process": "Treasury",
+      "cross_application": false,
+      "covered_by_conflict_rule": "SOD-R004",
+      "result": "pass"
+    },
+    {
+      "process_risk_id": "BP-AR-01",
+      "business_process": "Order to Cash",
+      "cross_application": true,
+      "covered_by_conflict_rule": "SOD-R005",
+      "result": "pass"
+    }
+  ],
+  "conflict_evaluations": [
+    {
+      "conflict_id": "gen800:SOD-R001",
+      "conflict_rule_id": "SOD-R001",
+      "business_process": "Procure to Pay",
+      "risk_statement": "A user could create or alter a vendor and release payment to that vendor",
+      "user_id": "gen800",
+      "display_name": "AP Operations Shared",
+      "account_types": [
+        "generic"
+      ],
+      "applications": [
+        "atlas_treasury",
+        "coranto_erp"
+      ],
+      "account_ids": [
+        "ATL-800",
+        "ERP-800"
+      ],
+      "entitlements": [
+        "coranto_erp:VENDOR_MAINTAIN",
+        "atlas_treasury:PAYMENT_RELEASE"
+      ],
+      "cross_application": true,
+      "exception": null,
+      "latest_control_test": null,
+      "mitigation_assessment": "ineffective_or_absent",
+      "mitigation_reasons": [
+        "no approved exception"
+      ],
+      "result": "unmitigated_conflict"
+    },
+    {
+      "conflict_id": "u100:SOD-R001",
+      "conflict_rule_id": "SOD-R001",
+      "business_process": "Procure to Pay",
+      "risk_statement": "A user could create or alter a vendor and release payment to that vendor",
+      "user_id": "u100",
+      "display_name": "Maya Chen",
+      "account_types": [
+        "human"
+      ],
+      "applications": [
+        "atlas_treasury",
+        "coranto_erp"
+      ],
+      "account_ids": [
+        "ATL-100",
+        "ERP-100"
+      ],
+      "entitlements": [
+        "coranto_erp:VENDOR_MAINTAIN",
+        "atlas_treasury:PAYMENT_RELEASE"
+      ],
+      "cross_application": true,
+      "exception": null,
+      "latest_control_test": null,
+      "mitigation_assessment": "ineffective_or_absent",
+      "mitigation_reasons": [
+        "no approved exception"
+      ],
+      "result": "unmitigated_conflict"
+    },
+    {
+      "conflict_id": "u400:SOD-R001",
+      "conflict_rule_id": "SOD-R001",
+      "business_process": "Procure to Pay",
+      "risk_statement": "A user could create or alter a vendor and release payment to that vendor",
+      "user_id": "u400",
+      "display_name": "Jordan Bell",
+      "account_types": [
+        "human"
+      ],
+      "applications": [
+        "atlas_treasury",
+        "coranto_erp"
+      ],
+      "account_ids": [
+        "ATL-400",
+        "ERP-400"
+      ],
+      "entitlements": [
+        "coranto_erp:VENDOR_MAINTAIN",
+        "atlas_treasury:PAYMENT_RELEASE"
+      ],
+      "cross_application": true,
+      "exception": {
+        "exception_id": "EXC-400",
+        "conflict_rule_id": "SOD-R001",
+        "user_id": "u400",
+        "status": "approved",
+        "owner": "Accounts Payable Manager",
+        "approved_by": "Controller",
+        "approved_at": "2026-04-20",
+        "expires_at": "2026-12-31",
+        "compensating_control_id": "CC-AP-400",
+        "reassessment_due_at": "2026-10-15",
+        "rationale": "Weekly independent vendor payment match review"
+      },
+      "latest_control_test": {
+        "test_id": "CCT-400-09",
+        "exception_id": "EXC-400",
+        "compensating_control_id": "CC-AP-400",
+        "period_end": "2026-09-07",
+        "tested_at": "2026-09-09",
+        "performer": "AP Supervisor",
+        "reviewer": "Assistant Controller",
+        "result": "failed",
+        "evidence_ref": "GRC-CC-400-2026-W36"
+      },
+      "mitigation_assessment": "ineffective_or_absent",
+      "mitigation_reasons": [
+        "latest compensating control test result is failed"
+      ],
+      "result": "unmitigated_conflict"
+    },
+    {
+      "conflict_id": "u200:SOD-R002",
+      "conflict_rule_id": "SOD-R002",
+      "business_process": "Record to Report",
+      "risk_statement": "A user could prepare and approve the same journal entry",
+      "user_id": "u200",
+      "display_name": "Leo Ortiz",
+      "account_types": [
+        "human"
+      ],
+      "applications": [
+        "coranto_erp"
+      ],
+      "account_ids": [
+        "ERP-200"
+      ],
+      "entitlements": [
+        "coranto_erp:JOURNAL_PREPARE",
+        "coranto_erp:JOURNAL_APPROVE"
+      ],
+      "cross_application": false,
+      "exception": {
+        "exception_id": "EXC-200",
+        "conflict_rule_id": "SOD-R002",
+        "user_id": "u200",
+        "status": "approved",
+        "owner": "Corporate Accounting Manager",
+        "approved_by": "Controller",
+        "approved_at": "2026-01-08",
+        "expires_at": "2026-12-31",
+        "compensating_control_id": "CC-JE-200",
+        "reassessment_due_at": "2026-10-01",
+        "rationale": "Limited staffing with daily independent journal report review"
+      },
+      "latest_control_test": {
+        "test_id": "CCT-200-09",
+        "exception_id": "EXC-200",
+        "compensating_control_id": "CC-JE-200",
+        "period_end": "2026-09-07",
+        "tested_at": "2026-09-08",
+        "performer": "Accounting Supervisor",
+        "reviewer": "Assistant Controller",
+        "result": "pass",
+        "evidence_ref": "GRC-CC-200-2026-W36"
+      },
+      "mitigation_assessment": "effective",
+      "mitigation_reasons": [],
+      "result": "accepted_with_effective_control"
+    },
+    {
+      "conflict_id": "u300:SOD-R003",
+      "conflict_rule_id": "SOD-R003",
+      "business_process": "Travel and Expense",
+      "risk_statement": "A user could submit and approve their own expense",
+      "user_id": "u300",
+      "display_name": "Priya Shah",
+      "account_types": [
+        "human"
+      ],
+      "applications": [
+        "nimbus_expense"
+      ],
+      "account_ids": [
+        "NIM-300"
+      ],
+      "entitlements": [
+        "nimbus_expense:EXPENSE_SUBMIT",
+        "nimbus_expense:EXPENSE_APPROVE"
+      ],
+      "cross_application": false,
+      "exception": {
+        "exception_id": "EXC-300",
+        "conflict_rule_id": "SOD-R003",
+        "user_id": "u300",
+        "status": "approved",
+        "owner": "Expense Operations Manager",
+        "approved_by": "Controller",
+        "approved_at": "2025-09-01",
+        "expires_at": "2026-08-31",
+        "compensating_control_id": "CC-EXP-300",
+        "reassessment_due_at": "2026-08-31",
+        "rationale": "Temporary regional approver coverage"
+      },
+      "latest_control_test": {
+        "test_id": "CCT-300-08",
+        "exception_id": "EXC-300",
+        "compensating_control_id": "CC-EXP-300",
+        "period_end": "2026-08-24",
+        "tested_at": "2026-08-25",
+        "performer": "Expense Analyst",
+        "reviewer": "Expense Operations Manager",
+        "result": "pass",
+        "evidence_ref": "GRC-CC-300-2026-W34"
+      },
+      "mitigation_assessment": "ineffective_or_absent",
+      "mitigation_reasons": [
+        "exception expired on 2026-08-31",
+        "reassessment was due on 2026-08-31"
+      ],
+      "result": "unmitigated_conflict"
+    },
+    {
+      "conflict_id": "u700:SOD-R005",
+      "conflict_rule_id": "SOD-R005",
+      "business_process": "Order to Cash",
+      "risk_statement": "A user could alter a customer and approve a credit memo",
+      "user_id": "u700",
+      "display_name": "Amina Yusuf",
+      "account_types": [
+        "human"
+      ],
+      "applications": [
+        "coranto_erp",
+        "quill_billing"
+      ],
+      "account_ids": [
+        "ERP-700",
+        "QUI-700"
+      ],
+      "entitlements": [
+        "coranto_erp:CUSTOMER_MAINTAIN",
+        "quill_billing:CREDIT_MEMO_APPROVE"
+      ],
+      "cross_application": true,
+      "exception": {
+        "exception_id": "EXC-700",
+        "conflict_rule_id": "SOD-R005",
+        "user_id": "u700",
+        "status": "approved",
+        "owner": "Billing Operations Manager",
+        "approved_by": "Controller",
+        "approved_at": "2026-01-14",
+        "expires_at": "2026-12-31",
+        "compensating_control_id": "CC-AR-700",
+        "reassessment_due_at": "2026-10-15",
+        "rationale": "Weekly independent credit memo review"
+      },
+      "latest_control_test": {
+        "test_id": "CCT-700-09",
+        "exception_id": "EXC-700",
+        "compensating_control_id": "CC-AR-700",
+        "period_end": "2026-09-07",
+        "tested_at": "2026-09-08",
+        "performer": "Billing Supervisor",
+        "reviewer": "Assistant Controller",
+        "result": "pass",
+        "evidence_ref": "GRC-CC-700-2026-W36"
+      },
+      "mitigation_assessment": "effective",
+      "mitigation_reasons": [],
+      "result": "accepted_with_effective_control"
+    }
+  ],
+  "counts_by_severity": {
+    "critical": 3,
+    "high": 3
+  },
+  "findings": [
+    {
+      "finding_id": "SOD-e9ba43c8ad098a20",
+      "control_id": "ITGC-SOD-001",
+      "rule": "SOD-02",
+      "assertion": "No active user holds an unmitigated incompatible access combination.",
+      "severity": "critical",
+      "object_type": "user_conflict",
+      "object_id": "gen800:SOD-R001",
+      "conflict_rule_id": "SOD-R001",
+      "user_id": "gen800",
+      "display_name": "AP Operations Shared",
+      "account_type": "generic",
+      "applications": "atlas_treasury | coranto_erp",
+      "account_ids": "ATL-800 | ERP-800",
+      "entitlements": "coranto_erp:VENDOR_MAINTAIN | atlas_treasury:PAYMENT_RELEASE",
+      "risk_statement": "A user could create or alter a vendor and release payment to that vendor",
+      "detail": "Active incompatible access is not effectively mitigated: no approved exception.",
+      "exception_id": "",
+      "remediation": "Remove or redesign one side of the conflicting access, or obtain formal approval for a time bound compensating control.",
+      "mitigation": "Review relevant transactions during the exposure period and validate that an independent control detected or prevented inappropriate activity.",
+      "root_cause": "Determine whether role design, provisioning bypass, matrix mapping, system integration, or periodic review failed.",
+      "closure_evidence": "Entitlement evidence from before and after the change, an approved exception if applicable, the transaction lookback, and control owner approval.",
+      "escalation": "Escalate immediately for conflicts capable of creating and approving or releasing financial transactions without independent review."
+    },
+    {
+      "finding_id": "SOD-586a0d9ecf1b7f0c",
+      "control_id": "ITGC-SOD-001",
+      "rule": "SOD-02",
+      "assertion": "No active user holds an unmitigated incompatible access combination.",
+      "severity": "critical",
+      "object_type": "user_conflict",
+      "object_id": "u100:SOD-R001",
+      "conflict_rule_id": "SOD-R001",
+      "user_id": "u100",
+      "display_name": "Maya Chen",
+      "account_type": "human",
+      "applications": "atlas_treasury | coranto_erp",
+      "account_ids": "ATL-100 | ERP-100",
+      "entitlements": "coranto_erp:VENDOR_MAINTAIN | atlas_treasury:PAYMENT_RELEASE",
+      "risk_statement": "A user could create or alter a vendor and release payment to that vendor",
+      "detail": "Active incompatible access is not effectively mitigated: no approved exception.",
+      "exception_id": "",
+      "remediation": "Remove or redesign one side of the conflicting access, or obtain formal approval for a time bound compensating control.",
+      "mitigation": "Review relevant transactions during the exposure period and validate that an independent control detected or prevented inappropriate activity.",
+      "root_cause": "Determine whether role design, provisioning bypass, matrix mapping, system integration, or periodic review failed.",
+      "closure_evidence": "Entitlement evidence from before and after the change, an approved exception if applicable, the transaction lookback, and control owner approval.",
+      "escalation": "Escalate immediately for conflicts capable of creating and approving or releasing financial transactions without independent review."
+    },
+    {
+      "finding_id": "SOD-dbf2615ddd4c5874",
+      "control_id": "ITGC-SOD-001",
+      "rule": "SOD-02",
+      "assertion": "No active user holds an unmitigated incompatible access combination.",
+      "severity": "critical",
+      "object_type": "user_conflict",
+      "object_id": "u400:SOD-R001",
+      "conflict_rule_id": "SOD-R001",
+      "user_id": "u400",
+      "display_name": "Jordan Bell",
+      "account_type": "human",
+      "applications": "atlas_treasury | coranto_erp",
+      "account_ids": "ATL-400 | ERP-400",
+      "entitlements": "coranto_erp:VENDOR_MAINTAIN | atlas_treasury:PAYMENT_RELEASE",
+      "risk_statement": "A user could create or alter a vendor and release payment to that vendor",
+      "detail": "Active incompatible access is not effectively mitigated: latest compensating control test result is failed.",
+      "exception_id": "EXC-400",
+      "remediation": "Remove or redesign one side of the conflicting access, or obtain formal approval for a time bound compensating control.",
+      "mitigation": "Review relevant transactions during the exposure period and validate that an independent control detected or prevented inappropriate activity.",
+      "root_cause": "Determine whether role design, provisioning bypass, matrix mapping, system integration, or periodic review failed.",
+      "closure_evidence": "Entitlement evidence from before and after the change, an approved exception if applicable, the transaction lookback, and control owner approval.",
+      "escalation": "Escalate immediately for conflicts capable of creating and approving or releasing financial transactions without independent review."
+    },
+    {
+      "finding_id": "SOD-5b4b345eb01af9b1",
+      "control_id": "ITGC-SOD-001",
+      "rule": "SOD-04",
+      "assertion": "Accepted conflicts have a current owner, approval, compensating control, and periodic reassessment.",
+      "severity": "high",
+      "object_type": "accepted_exception",
+      "object_id": "EXC-400",
+      "conflict_rule_id": "SOD-R001",
+      "user_id": "u400",
+      "display_name": "Jordan Bell",
+      "account_type": "human",
+      "applications": "atlas_treasury | coranto_erp",
+      "account_ids": "ATL-400 | ERP-400",
+      "entitlements": "coranto_erp:VENDOR_MAINTAIN | atlas_treasury:PAYMENT_RELEASE",
+      "risk_statement": "A user could create or alter a vendor and release payment to that vendor",
+      "detail": "Accepted conflict governance is not current or effective: latest compensating control test result is failed.",
+      "exception_id": "EXC-400",
+      "remediation": "Remove conflicting access or renew and approve the exception with an owned, effective compensating control and reassessment date.",
+      "mitigation": "Perform the overdue or failed compensating control review and a transaction lookback for the unsupported period.",
+      "root_cause": "Determine why exception ownership, expiry monitoring, evidence collection, or control performance failed.",
+      "closure_evidence": "Current approval, owner, compensating control test, reassessment date, lookback conclusion, and control owner approval.",
+      "escalation": "Escalate immediately when a critical conflict has no effective compensating control; otherwise at the response SLA."
+    },
+    {
+      "finding_id": "SOD-99fd09c8019af276",
+      "control_id": "ITGC-SOD-001",
+      "rule": "SOD-02",
+      "assertion": "No active user holds an unmitigated incompatible access combination.",
+      "severity": "high",
+      "object_type": "user_conflict",
+      "object_id": "u300:SOD-R003",
+      "conflict_rule_id": "SOD-R003",
+      "user_id": "u300",
+      "display_name": "Priya Shah",
+      "account_type": "human",
+      "applications": "nimbus_expense",
+      "account_ids": "NIM-300",
+      "entitlements": "nimbus_expense:EXPENSE_SUBMIT | nimbus_expense:EXPENSE_APPROVE",
+      "risk_statement": "A user could submit and approve their own expense",
+      "detail": "Active incompatible access is not effectively mitigated: exception expired on 2026-08-31; reassessment was due on 2026-08-31.",
+      "exception_id": "EXC-300",
+      "remediation": "Remove or redesign one side of the conflicting access, or obtain formal approval for a time bound compensating control.",
+      "mitigation": "Review relevant transactions during the exposure period and validate that an independent control detected or prevented inappropriate activity.",
+      "root_cause": "Determine whether role design, provisioning bypass, matrix mapping, system integration, or periodic review failed.",
+      "closure_evidence": "Entitlement evidence from before and after the change, an approved exception if applicable, the transaction lookback, and control owner approval.",
+      "escalation": "Escalate immediately for conflicts capable of creating and approving or releasing financial transactions without independent review."
+    },
+    {
+      "finding_id": "SOD-dbe7f956a4442851",
+      "control_id": "ITGC-SOD-001",
+      "rule": "SOD-04",
+      "assertion": "Accepted conflicts have a current owner, approval, compensating control, and periodic reassessment.",
+      "severity": "high",
+      "object_type": "accepted_exception",
+      "object_id": "EXC-300",
+      "conflict_rule_id": "SOD-R003",
+      "user_id": "u300",
+      "display_name": "Priya Shah",
+      "account_type": "human",
+      "applications": "nimbus_expense",
+      "account_ids": "NIM-300",
+      "entitlements": "nimbus_expense:EXPENSE_SUBMIT | nimbus_expense:EXPENSE_APPROVE",
+      "risk_statement": "A user could submit and approve their own expense",
+      "detail": "Accepted conflict governance is not current or effective: exception expired on 2026-08-31; reassessment was due on 2026-08-31.",
+      "exception_id": "EXC-300",
+      "remediation": "Remove conflicting access or renew and approve the exception with an owned, effective compensating control and reassessment date.",
+      "mitigation": "Perform the overdue or failed compensating control review and a transaction lookback for the unsupported period.",
+      "root_cause": "Determine why exception ownership, expiry monitoring, evidence collection, or control performance failed.",
+      "closure_evidence": "Current approval, owner, compensating control test, reassessment date, lookback conclusion, and control owner approval.",
+      "escalation": "Escalate immediately when a critical conflict has no effective compensating control; otherwise at the response SLA."
+    }
+  ]
+}

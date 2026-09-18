@@ -1,0 +1,154 @@
+control:
+  id: ITGC-SOD-001
+  name: Segregation of Duties Monitoring
+  source_checklist: SOX_Segregation_of_Duties_Checklist.docx
+  risk_category: logical_access
+  risk: >-
+    Failure to identify and resolve incompatible access combinations could
+    allow a user to initiate and conceal an error or fraud without independent
+    review, resulting in unauthorized or inaccurate financial transactions.
+  control_description: >-
+    Management performs periodic analysis of complete active user entitlement
+    populations against the approved segregation of duties matrix and
+    remediates or formally mitigates identified conflicts.
+  objective: >-
+    Incompatible duties within and across in scope systems are identified,
+    prevented, remediated, or mitigated through approved compensating controls.
+  activity: >-
+    Evaluate complete active user entitlement populations against the approved,
+    versioned SoD rule matrix, including cross application combinations.
+  frequency: Weekly detective monitoring; formal management review at least quarterly
+  population: >-
+    All active human, privileged, generic, and applicable service accounts with
+    roles and permissions across in scope systems.
+  owner: Financial Systems Controls
+
+review:
+  as_of: "2026-09-15"
+  window_start: "2026-09-01T00:00:00Z"
+  window_end: "2026-09-15T23:59:59Z"
+  approved_matrix_version: "2026.1"
+  compensating_control_test_max_age_days: 92
+
+sources:
+  - id: coranto_erp_accounts
+    kind: accounts
+    application: coranto_erp
+    path: data/coranto_erp/accounts.csv
+    key_fields: [account_id]
+    required_columns: [account_id, user_id, display_name, account_type, status, is_privileged, as_of]
+  - id: coranto_erp_entitlements
+    kind: entitlements
+    application: coranto_erp
+    path: data/coranto_erp/entitlements.csv
+    key_fields: [account_id, entitlement]
+    required_columns: [account_id, user_id, entitlement, assigned_at]
+  - id: atlas_treasury_accounts
+    kind: accounts
+    application: atlas_treasury
+    path: data/atlas_treasury/accounts.csv
+    key_fields: [account_id]
+    required_columns: [account_id, user_id, display_name, account_type, status, is_privileged, as_of]
+  - id: atlas_treasury_entitlements
+    kind: entitlements
+    application: atlas_treasury
+    path: data/atlas_treasury/entitlements.csv
+    key_fields: [account_id, entitlement]
+    required_columns: [account_id, user_id, entitlement, assigned_at]
+  - id: nimbus_expense_accounts
+    kind: accounts
+    application: nimbus_expense
+    path: data/nimbus_expense/accounts.csv
+    key_fields: [account_id]
+    required_columns: [account_id, user_id, display_name, account_type, status, is_privileged, as_of]
+  - id: nimbus_expense_entitlements
+    kind: entitlements
+    application: nimbus_expense
+    path: data/nimbus_expense/entitlements.csv
+    key_fields: [account_id, entitlement]
+    required_columns: [account_id, user_id, entitlement, assigned_at]
+  - id: quill_billing_accounts
+    kind: accounts
+    application: quill_billing
+    path: data/quill_billing/accounts.csv
+    key_fields: [account_id]
+    required_columns: [account_id, user_id, display_name, account_type, status, is_privileged, as_of]
+  - id: quill_billing_entitlements
+    kind: entitlements
+    application: quill_billing
+    path: data/quill_billing/entitlements.csv
+    key_fields: [account_id, entitlement]
+    required_columns: [account_id, user_id, entitlement, assigned_at]
+  - id: sod_matrix
+    kind: sod_matrix
+    application: governance
+    path: data/governance/sod_matrix.csv
+    key_fields: [conflict_rule_id]
+    required_columns: [conflict_rule_id, business_process, risk_statement, left_application, left_entitlement, right_application, right_entitlement, severity, cross_application, matrix_version, status, approved_by, approved_at, effective_from, effective_to]
+  - id: business_process_risks
+    kind: business_process_risks
+    application: governance
+    path: data/governance/business_process_risks.csv
+    key_fields: [process_risk_id]
+    required_columns: [process_risk_id, business_process, left_application, left_entitlement, right_application, right_entitlement, cross_application, owner]
+  - id: approved_exceptions
+    kind: exceptions
+    application: governance
+    path: data/governance/approved_exceptions.csv
+    key_fields: [exception_id]
+    required_columns: [exception_id, conflict_rule_id, user_id, status, owner, approved_by, approved_at, expires_at, compensating_control_id, reassessment_due_at, rationale]
+  - id: compensating_control_tests
+    kind: control_tests
+    application: governance
+    path: data/governance/compensating_control_tests.csv
+    key_fields: [test_id]
+    required_columns: [test_id, exception_id, compensating_control_id, period_end, tested_at, performer, reviewer, result, evidence_ref]
+
+rules:
+  SOD-01:
+    severity: high
+    assertion: The applied rule set matches the current approved SoD matrix.
+  SOD-02:
+    severity: critical
+    assertion: No active user holds an unmitigated incompatible access combination.
+  SOD-03:
+    severity: high
+    assertion: Cross application conflicts are included where the business process spans systems.
+  SOD-04:
+    severity: high
+    assertion: Accepted conflicts have a current owner, approval, compensating control, and periodic reassessment.
+
+rule_responses:
+  SOD-01:
+    remediation: Stop reliance on the run; obtain approval of the correct matrix version and rerun the complete population.
+    mitigation: Compare changes between the applied and approved matrix and evaluate all users affected by the gap.
+    root_cause: Determine whether matrix governance, deployment, version control, or approval evidence failed.
+    closure_evidence: Approved matrix, version comparison, rerun evidence, and control owner approval.
+    escalation: Escalate immediately when the wrong matrix could omit a financially significant conflict.
+  SOD-02:
+    remediation: Remove or redesign one side of the conflicting access, or obtain formal approval for a time bound compensating control.
+    mitigation: Review relevant transactions during the exposure period and validate that an independent control detected or prevented inappropriate activity.
+    root_cause: Determine whether role design, provisioning bypass, matrix mapping, system integration, or periodic review failed.
+    closure_evidence: Entitlement evidence from before and after the change, an approved exception if applicable, the transaction lookback, and control owner approval.
+    escalation: Escalate immediately for conflicts capable of creating and approving or releasing financial transactions without independent review.
+  SOD-03:
+    remediation: Add the missing cross application rule to the matrix through its formal approval process and rerun the complete population.
+    mitigation: Manually evaluate the affected process and application populations until automated coverage is restored.
+    root_cause: Determine why process risk analysis, application inventory, or matrix maintenance omitted the combination across systems.
+    closure_evidence: Approved matrix revision, coverage reconciliation, rerun evidence, and control owner approval.
+    escalation: Escalate when the missing rule affects a financially significant process or privileged access.
+  SOD-04:
+    remediation: Remove conflicting access or renew and approve the exception with an owned, effective compensating control and reassessment date.
+    mitigation: Perform the overdue or failed compensating control review and a transaction lookback for the unsupported period.
+    root_cause: Determine why exception ownership, expiry monitoring, evidence collection, or control performance failed.
+    closure_evidence: Current approval, owner, compensating control test, reassessment date, lookback conclusion, and control owner approval.
+    escalation: Escalate immediately when a critical conflict has no effective compensating control; otherwise at the response SLA.
+
+response_governance:
+  mode: human_approval_required
+  response_sla_days: 5
+  escalation_owner: Financial Systems Controls
+  prohibited_actions:
+    - automatic_access_removal
+    - automatic_risk_acceptance
+    - automatic_exception_closure

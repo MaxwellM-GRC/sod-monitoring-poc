@@ -1,0 +1,6 @@
+conflict_rule_id,business_process,risk_statement,left_application,left_entitlement,right_application,right_entitlement,severity,cross_application,matrix_version,status,approved_by,approved_at,effective_from,effective_to
+SOD-R001,Procure to Pay,A user could create or alter a vendor and release payment to that vendor,coranto_erp,VENDOR_MAINTAIN,atlas_treasury,PAYMENT_RELEASE,critical,true,2026.1,approved,Controller,2026-01-05,2026-01-01,2026-12-31
+SOD-R002,Record to Report,A user could prepare and approve the same journal entry,coranto_erp,JOURNAL_PREPARE,coranto_erp,JOURNAL_APPROVE,high,false,2026.1,approved,Controller,2026-01-05,2026-01-01,2026-12-31
+SOD-R003,Travel and Expense,A user could submit and approve their own expense,nimbus_expense,EXPENSE_SUBMIT,nimbus_expense,EXPENSE_APPROVE,high,false,2026.1,approved,Controller,2026-01-05,2026-01-01,2026-12-31
+SOD-R004,Treasury,A user could change bank instructions and release a payment,atlas_treasury,BANK_ACCOUNT_MAINTAIN,atlas_treasury,PAYMENT_RELEASE,critical,false,2026.1,approved,Treasurer,2026-01-06,2026-01-01,2026-12-31
+SOD-R005,Order to Cash,A user could alter a customer and approve a credit memo,coranto_erp,CUSTOMER_MAINTAIN,quill_billing,CREDIT_MEMO_APPROVE,high,true,2026.1,approved,Controller,2026-01-05,2026-01-01,2026-12-31

@@ -1,0 +1,6 @@
+process_risk_id,business_process,left_application,left_entitlement,right_application,right_entitlement,cross_application,owner
+BP-AP-01,Procure to Pay,coranto_erp,VENDOR_MAINTAIN,atlas_treasury,PAYMENT_RELEASE,true,Procure to Pay Owner
+BP-GL-01,Record to Report,coranto_erp,JOURNAL_PREPARE,coranto_erp,JOURNAL_APPROVE,false,Record to Report Owner
+BP-EXP-01,Travel and Expense,nimbus_expense,EXPENSE_SUBMIT,nimbus_expense,EXPENSE_APPROVE,false,Travel and Expense Owner
+BP-TRE-01,Treasury,atlas_treasury,BANK_ACCOUNT_MAINTAIN,atlas_treasury,PAYMENT_RELEASE,false,Treasury Owner
+BP-AR-01,Order to Cash,coranto_erp,CUSTOMER_MAINTAIN,quill_billing,CREDIT_MEMO_APPROVE,true,Order to Cash Owner

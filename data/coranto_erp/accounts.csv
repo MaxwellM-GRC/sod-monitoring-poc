@@ -1,0 +1,8 @@
+account_id,user_id,display_name,account_type,status,is_privileged,as_of
+ERP-100,u100,Maya Chen,human,active,false,2026-09-15
+ERP-200,u200,Leo Ortiz,human,active,false,2026-09-15
+ERP-400,u400,Jordan Bell,human,active,false,2026-09-15
+ERP-500,svc500,ERP Posting Service,service,active,true,2026-09-15
+ERP-600,u600,Sam Rivera,human,disabled,false,2026-09-15
+ERP-700,u700,Amina Yusuf,human,active,false,2026-09-15
+ERP-800,gen800,AP Operations Shared,generic,active,true,2026-09-15

@@ -1,0 +1,3 @@
+account_id,user_id,display_name,account_type,status,is_privileged,as_of
+NIM-300,u300,Priya Shah,human,active,false,2026-09-15
+NIM-700,u700,Amina Yusuf,human,active,false,2026-09-15

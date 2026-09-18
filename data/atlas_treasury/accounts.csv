@@ -1,0 +1,6 @@
+account_id,user_id,display_name,account_type,status,is_privileged,as_of
+ATL-100,u100,Maya Chen,human,active,true,2026-09-15
+ATL-400,u400,Jordan Bell,human,active,true,2026-09-15
+ATL-600,u600,Sam Rivera,human,disabled,true,2026-09-15
+ATL-800,gen800,AP Operations Shared,generic,active,true,2026-09-15
+ATL-900,u900,Nora Singh,human,active,false,2026-09-15
